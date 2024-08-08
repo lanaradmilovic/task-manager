@@ -5,8 +5,12 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
-@NoArgsConstructor
-@AllArgsConstructor
 public class BadRequest {
     private String message;
+    public BadRequest(String message) {
+        this.message = message;
+    }
+
+    public BadRequest() {
+    }
 }

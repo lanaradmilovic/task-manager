@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import rs.ac.bg.fon.notificationservice.model.Task;
 
-@FeignClient(name = "taskservice", url = "localhost:8080")
+@FeignClient(name = "taskservice", url = "http://taskservice:8080")
 public interface TaskServiceClient {
 
     @GetMapping("/api/tasks/{id}")

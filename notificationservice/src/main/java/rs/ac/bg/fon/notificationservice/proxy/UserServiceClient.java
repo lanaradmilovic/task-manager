@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import rs.ac.bg.fon.notificationservice.model.User;
 
-@FeignClient(name = "user-service", url = "localhost:8081")
+@FeignClient(name = "user-service", url = "http://userservice:8081")
 public interface UserServiceClient {
 
     @GetMapping("/api/users/{id}")

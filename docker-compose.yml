@@ -1,0 +1,65 @@
+version: '3.8'
+services:
+  eureka-server:
+    image: lanaradmilovic/eureka-server:0.0.1.RELEASE
+    ports:
+      - "8761:8761"
+    restart: always
+    networks:
+      - eureka-network
+
+  mysql:
+    image: mysql:8.0
+    environment:
+      MYSQL_DATABASE: task-manager
+      MYSQL_ROOT_PASSWORD: lana
+    ports:
+      - "3306:3306"
+    restart: always
+    networks:
+      - eureka-network
+
+  userservice:
+    image: lanaradmilovic/userservice:0.0.3.RELEASE
+    ports:
+      - "8081:8081"
+    restart: always
+    depends_on:
+      - eureka-server
+      - mysql
+    networks:
+      - eureka-network
+  taskservice:
+    image: lanaradmilovic/taskservice:0.0.2.RELEASE
+    ports:
+      - "8080:8080"
+    restart: always
+    depends_on:
+      - eureka-server
+      - mysql
+    networks:
+      - eureka-network
+  notificationservice:
+    image: lanaradmilovic/notificationservice:0.0.1.RELEASE
+    ports:
+      - "8083:8083"
+    restart: always
+    depends_on:
+      - eureka-server
+      - mysql
+    networks:
+      - eureka-network
+  api-gateway:
+    image: lanaradmilovic/api-gateway:0.0.1.RELEASE
+    ports:
+      - "8000:8000"
+    restart: always
+    depends_on:
+      - userservice
+      - taskservice
+      - notificationservice
+    networks:
+      - eureka-network
+
+networks:
+  eureka-network:

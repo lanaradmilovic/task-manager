@@ -4,8 +4,7 @@
                    http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
 
 
-    <changeSet id="init-task" author="lana">
-        <sqlFile path="dml/init-task.sql" relativeToChangelogFile="true"/>
+    <changeSet id="init-user" author="lana">
+        <sqlFile path="dml/init-user.sql" relativeToChangelogFile="true"/>
     </changeSet>
-
 </databaseChangeLog>
